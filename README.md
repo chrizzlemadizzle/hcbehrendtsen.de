@@ -1,3 +1,3 @@
 # hcbehrendtsen.de
 
-Hier is a [link](hcbehrendtsen.de) to my website.
+Hier is a [link](http://hcbehrendtsen.de) to my website.
