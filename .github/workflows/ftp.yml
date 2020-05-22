@@ -1,6 +1,11 @@
 name: Deploy via FTP
+ 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-on: push
 jobs:
   deploy:
     name: Deploy
