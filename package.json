@@ -1,0 +1,13 @@
+{
+  "name": "hcbehrendtsen.de",
+  "version": "1.0.0",
+  "author": "Christian Dähne",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrizzlemadizzle/hcbehrendtsen.de.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrizzlemadizzle/hcbehrendtsen.de/issues"
+  }
+}
