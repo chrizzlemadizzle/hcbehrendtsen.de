@@ -9,6 +9,16 @@ var score6 = [];
 var soundLoop1;
 var soundLoop2;
 var soundLoop3;
+var soundLoop4;
+var soundLoop5;
+var soundLoop6;
+
+var header, headerIndex, headerX, headerY, headerW, headerH;
+var img, imgIndex;
+var youtube, youtubeIndex;
+var bandcamp, bandcampIndex;
+var mailchimp, mailchimpIndex;
+var toDo, toDoIndex;
 
 var colorCount = 3;
 var hueValues = [];
@@ -24,6 +34,8 @@ function preload() {
   bass = loadSound('assets/sounds/bass.ogg');
   snare = loadSound('assets/sounds/snare.ogg');
   giddi = loadSound('assets/sounds/giddi.ogg');
+
+  img = loadImage('assets/images/Trio_yellow.gif');
 }
 
 function windowResized() {
@@ -33,11 +45,27 @@ function windowResized() {
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 360, 100, 100, 100);
-  noStroke();
+  //noStroke();
   cnv.position(0, 0);
   cnv.style('z-index', '-1');
-  //cnv.mousePressed(canvasPressed);
+  //cnv.mousePressed(canvasPressed); // taken out because canvas is now underneath one layer
 
+  //create html elements:
+  //header
+  //header = createElement('h1', 'H.C.BEHRENDTSEN2');
+  //header = text('H. C. BEHRENDTSEN' )
+
+  //image1
+  //img = createP('<img src="assets/images/Trio_yellow.gif" width="640" height="480" alt="picture of us">');
+  
+  //Youtube-Video
+  youtube = select('#youtube');
+  //youtube.html('<iframe width="560" height="315" src="https://www.youtube.com/embed/kyTEVVsGKn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+
+  //bandcamp
+  bandcamp = select('#bandcamp');
+
+  mailchimp = select('#mailchimp')
   /////
   let firstIntervall = 1
   soundLoop1 = new p5.SoundLoop(onSoundLoop1, firstIntervall);
@@ -79,6 +107,40 @@ function draw() {
   //var rowCount = int(random(5, 30));
   var rowHeight = height / rowCount;
 
+  //setup html-elements for positioning:
+  headerIndex = new Array('', '');
+  imgIndex = new Array('', '');
+  youtubeIndex = new Array('', '');
+  bandcampIndex = new Array('', '');
+  mailchimpIndex = new Array('', '');
+  toDoIndex = new Array('', '');
+  let compareIndexes = [headerIndex, imgIndex, youtubeIndex, bandcampIndex, mailchimpIndex];
+  let alreadySeen = [];
+
+  //placement algorithm!?!?
+  //compareIndexes.forEach(str => alreadySeen[str] ? console.log(str) : alreadySeen[str] = true);
+
+ 
+    // headerIndex[0] = floor(random(0, rowCount));
+    // headerIndex[1] = floor(random(0, headerIndex[0] + 1));
+    headerIndex = [0,0];
+
+    imgIndex[0] = floor(random(0, rowCount));
+    imgIndex[1] = floor(random(0, imgIndex[0] + 1));
+
+    youtubeIndex[0] = floor(random(0, rowCount));
+    youtubeIndex[1] = floor(random(0, youtubeIndex[0] + 1));
+
+    bandcampIndex[0] = floor(random(0, rowCount));
+    bandcampIndex[1] = floor(random(0, bandcampIndex[0] + 1));
+
+    mailchimpIndex[0] = floor(random(0, rowCount));
+    mailchimpIndex[1] = floor(random(0, mailchimpIndex[0] + 1));
+  
+    toDoIndex[0] = floor(random(0, rowCount));
+    toDoIndex[1] = floor(random(0, toDoIndex[0] + 1));
+  //while (headerIndex == imgIndex || headerIndex == youtubeIndex || headerIndex == youtubeIndex || headerIndex == bandcampIndex || headerIndex == mailchimpIndex || imgIndex == youtubeIndex || imgIndex == bandcampIndex || imgIndex == mailchimpIndex || youtubeIndex == bandcampIndex || youtubeIndex == mailchimpIndex || bandcampIndex == mailchimpIndex );
+
   // seperate each line in parts
   for (var i = rowCount; i >= 0; i--) {
     // how many fragments
@@ -117,42 +179,99 @@ function draw() {
 
       var index = counter % colorCount;
       var col = color(hueValues[index], saturationValues[index], brightnessValues[index]);
-      fill(col);
+      //fill rectangles with intital color-values:
+      fill(100, 100, 100);
       rect(x, y, w, h);
+
+        //positioning/design of html elements:
+        if (headerIndex[0] == i && headerIndex[1] == ii) {
+            fill(0);
+            textSize(h);
+            text('H. C. BEHRENDTSEN', x + w, y, -w * 3, h);
+            //header.position(x + w, y);
+        }
+
+        //positioning of html elements:
+        if (imgIndex[0] == i && imgIndex[1] == ii) {
+            image(img, x + w, y, -w, h);
+        }
+
+        //positioning youtube:
+        if (youtubeIndex[0] == i && youtubeIndex[1] == ii) {
+            youtube.position(x + w, y);
+            let scaleFactor = 0.5;
+            youtube.style('width', 300 + 'px');
+            console.log();
+        }
+
+        //bandcamp
+        if (bandcampIndex[0] == i && bandcampIndex[1] == ii) {
+            fill(0);
+            textSize(h * 0.45);
+            text('Listen', x + w, y, -w * 3, h);
+            // bandcamp.position(x + w, y);
+            // bandcamp.style('width', -w + 'px');
+        }
+
+         //mailchimp
+         if (mailchimpIndex[0] == i && mailchimpIndex[1] == ii) {
+            fill(0);
+            textSize(h * 0.45);
+            text('Newsletter', x + w, y, -w * 3, h);
+            mailchimp.position(x + w, y);
+            mailchimp.style('width', -w + 'px');
+        }
+
+        //toDo
+        if (toDoIndex[0] == i && toDoIndex[1] == ii) {
+            fill(0);
+            textSize(h * 0.45);
+            text('K = Play \nr = Refresh', x + w, y, -w, h);
+            mailchimp.style('width', -w + 'px');
+        }
 
       //create scores from w values:
       //for (var j = rowCount; j >= 0; j--) {
         if (i == 2) {
-          //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score1.push(dur);
+          //map from px to seconds (1sek-track)
+          //let dur = map(w, -width, 0, 0, 1);
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h, col];
+          score1.push(package);
         }
         if (i == 3) {
           //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score2.push(dur);
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h, col];
+          score2.push(package);
         }
         if (i == 4) {
           //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score3.push(dur);
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h, col];
+          score3.push(package);
         }
         if (i == 5) {
           //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score3.push(dur);
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h, col];
+          score3.push(package);
         }
         if (i == 6) {
           //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score5.push(dur);
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h], col;
+          score5.push(package);
         }
         if (i == 7) {
-          //map from px to seconds (5sek-track)
-          let dur = map(w, -width, 0, 0, 1);
-          score6.push(dur);
+          //map from px to seconds
+          let dur = map(-w, 0, width, 0, 5);
+          let package = [dur, x, y, w, h, col];
+          score6.push(package);
         }
       //}
+
+        
       counter++;
     }
   }
@@ -205,34 +324,46 @@ function keyPressed () {
 }
 
 function onSoundLoop1 (timeFromNow) {
+console.log('loop1 called');
   var index = (soundLoop1.iterations - 1) % score1.length;
-  var interval = score1[index];
+  var interval = score1[index][0];
   soundLoop1.interval = interval;
   var panning = random(-1, 1);
   stutter.pan(panning);
   stutter.play(timeFromNow);
   soundLoop1.maxIterations = score1.length;
+  //highlight rectangle
+  fill(score1[index][5]);
+  rect(score1[index][1], score1[index][2], score1[index][3], score1[index][4]);
 }
 
 function onSoundLoop2 (timeFromNow) {
+    console.log('loop2 called');
   var index = (soundLoop2.iterations - 1) % score2.length;
-  var interval = score2[index];
+  var interval = score2[index][0];
   soundLoop2.interval = interval;
   // var panning = random(-1, 1);
   // bass.pan(panning);
   bass.play(timeFromNow);
   soundLoop2.maxIterations = score2.length;
+  //highlight rectangle
+  fill(score2[index][5]);
+  rect(score2[index][1], score2[index][2], score2[index][3], score2[index][4]);
 }
 
 function onSoundLoop3(timeFromNow) {
+    console.log('loop3 called');
   // set interval to position in score-array:
   var index = (soundLoop3.iterations - 1) % score3.length;
-  var interval = score3[index];
+  var interval = score3[index][0];
   soundLoop3.interval = interval;
   var panning = random(-1, 1);
   giddi.pan(panning);
   giddi.play(timeFromNow);
   soundLoop3.maxIterations = score3.length;
+  //highlight rectangle
+  fill(score3[index][5]);
+  rect(score3[index][1], score3[index][2], score3[index][3], score3[index][4]);
   
 //  let noteIndex = (soundLoop.iterations - 1) % notePattern.length;
 //  let note = midiToFreq(notePattern[noteIndex]);
@@ -241,34 +372,46 @@ function onSoundLoop3(timeFromNow) {
 }
 
 function onSoundLoop4 (timeFromNow) {
+    console.log('loop4 called');
   var index = (soundLoop4.iterations - 1) % score4.length;
-  var interval = score4[index];
+  var interval = score4[index][0];
   soundLoop4.interval = interval;
   var panning = random(-1, 1);
   tom.pan(panning);
   tom.play(timeFromNow);
   soundLoop4.maxIterations = score4.length;
+  //highlight rectangle
+  fill(score4[index][5]);
+  rect(score4[index][1], score4[index][2], score4[index][3], score4[index][4]);
 }
 
 function onSoundLoop5 (timeFromNow) {
+    console.log('loop5 called');
   var index = (soundLoop5.iterations - 1) % score5.length;
-  var interval = score5[index];
+  var interval = score5[index][0];
   soundLoop5.interval = interval;
   // var panning = random(-1, 1);
   // snare.pan(panning);
   snare.play(timeFromNow);
   soundLoop5.maxIterations = score5.length;
+  //highlight rectangle
+  fill(score5[index][5]);
+  rect(score5[index][1], score5[index][2], score5[index][3], score5[index][4]);
 }
 
 function onSoundLoop6 (timeFromNow) {
+    console.log('loop 6 called');
+    
+    console.log('timeFromNow :' + timeFromNow);
   var index = (soundLoop6.iterations - 1) % score6.length;
-  var interval = score6[index];
+  var interval = score6[index][0];
+  console.log('interval :' + interval);
   soundLoop6.interval = interval;
   var panning = random(-1, 1);
   ride.pan(panning);
   ride.play(timeFromNow);
   soundLoop6.maxIterations = score6.length;
+  //highlight rectangle
+  fill(score6[index][5]);
+  rect(score6[index][1], score6[index][2], score6[index][3], score6[index][4]);
 }
-
-
-
