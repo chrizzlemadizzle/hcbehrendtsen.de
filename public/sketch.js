@@ -52,9 +52,10 @@ function setup() {
 
   //create html elements:
   //header
-  //header = createElement('h1', 'H.C.BEHRENDTSEN2');
+  header = createSpan('H. C. BEHRENDTSEN');
+  header.mouseOver(headerClicked);
   //header = text('H. C. BEHRENDTSEN' )
-
+  
   //image1
   //img = createP('<img src="assets/images/Trio_yellow.gif" width="640" height="480" alt="picture of us">');
   
@@ -63,10 +64,17 @@ function setup() {
   //youtube.html('<iframe width="560" height="315" src="https://www.youtube.com/embed/kyTEVVsGKn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
 
   //bandcamp
-  bandcamp = select('#bandcamp');
-
+  //bandcamp = select('#bandcamp');
+  //bandcamp = createA('http://p5js.org/', 'LISTEN', '_blank');
+  bandcamp = createSpan('LISTEN');
+  bandcamp.mouseOver(bandcampMouseOver);
+  bandcamp.mouseOut(bandcampMouseOut);
+  bandcamp.mouseClicked(bandcampMouseClicked);
+  
   mailchimp = select('#mailchimp')
   /////
+
+  //define soundLoops
   let firstIntervall = 1
   soundLoop1 = new p5.SoundLoop(onSoundLoop1, firstIntervall);
   soundLoop2 = new p5.SoundLoop(onSoundLoop2, firstIntervall);
@@ -74,10 +82,6 @@ function setup() {
   soundLoop4 = new p5.SoundLoop(onSoundLoop4, firstIntervall);
   soundLoop5 = new p5.SoundLoop(onSoundLoop5, firstIntervall);
   soundLoop6 = new p5.SoundLoop(onSoundLoop6, firstIntervall);
-
-  //soundLoop.maxIterations = score3.length;
-
-  // synth = new p5.MonoSynth();
   /////
 }
 
@@ -185,10 +189,13 @@ function draw() {
 
         //positioning/design of html elements:
         if (headerIndex[0] == i && headerIndex[1] == ii) {
-            fill(0);
-            textSize(h);
-            text('H. C. BEHRENDTSEN', x + w, y, -w * 3, h);
+            // fill(0);
+            // textSize(h);
+            // text('H. C. BEHRENDTSEN', x + w, y, -w * 3, h);
             //header.position(x + w, y);
+            header.position(0, 0);
+            header.style('font-size', h + 'px');
+            
         }
 
         //positioning of html elements:
@@ -207,10 +214,13 @@ function draw() {
         //bandcamp
         if (bandcampIndex[0] == i && bandcampIndex[1] == ii) {
             fill(0);
-            textSize(h * 0.45);
-            text('Listen', x + w, y, -w * 3, h);
-            // bandcamp.position(x + w, y);
-            // bandcamp.style('width', -w + 'px');
+            //textSize(h * 0.45);
+            //text('Listen', x + w, y, -w * 3, h);
+            //bandcamp = new text('Listen', x + w, y, -w * 3, h);
+            bandcamp.position(x + w, y);
+            bandcamp.style('width', -w + 'px');
+            bandcamp.style('heigth', h + 'px');
+            bandcamp.style('font-size', h * 0.7 + 'px');
         }
 
          //mailchimp
@@ -414,4 +424,21 @@ function onSoundLoop6 (timeFromNow) {
   //highlight rectangle
   fill(score6[index][5]);
   rect(score6[index][1], score6[index][2], score6[index][3], score6[index][4]);
+}
+
+function headerClicked() {
+  console.log('mouseOverHeader');
+  header.style('color', 'green');
+}
+
+function bandcampMouseOver() {
+  bandcamp.style('background-color', 'coral');
+}
+
+function bandcampMouseOut() {
+  bandcamp.style('background-color', '#55FF00')
+}
+
+function bandcampMouseClicked() {
+  window.open("https://hcbehrendtsen.bandcamp.com/releases");
 }
