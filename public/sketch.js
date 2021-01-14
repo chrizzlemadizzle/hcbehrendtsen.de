@@ -36,6 +36,7 @@ function preload() {
   giddi = loadSound('assets/sounds/giddi.ogg');
 
   img = loadImage('assets/images/Trio_yellow.gif');
+  listen = loadImage('assets/images/listen.svg');
 }
 
 function windowResized() {
@@ -66,7 +67,8 @@ function setup() {
   //bandcamp
   //bandcamp = select('#bandcamp');
   //bandcamp = createA('http://p5js.org/', 'LISTEN', '_blank');
-  bandcamp = createSpan('LISTEN');
+  //bandcamp = createSpan('LISTEN');
+  //bandcamp = createElement(svg, [content])
   bandcamp.mouseOver(bandcampMouseOver);
   bandcamp.mouseOut(bandcampMouseOut);
   bandcamp.mouseClicked(bandcampMouseClicked);
@@ -217,10 +219,14 @@ function draw() {
             //textSize(h * 0.45);
             //text('Listen', x + w, y, -w * 3, h);
             //bandcamp = new text('Listen', x + w, y, -w * 3, h);
-            bandcamp.position(x + w, y);
-            bandcamp.style('width', -w + 'px');
-            bandcamp.style('heigth', h + 'px');
-            bandcamp.style('font-size', h * 0.7 + 'px');
+
+            // bandcamp.position(x + w, y);
+            // bandcamp.style('width', -w + 'px');
+            // bandcamp.style('heigth', h + 'px');
+            // bandcamp.style('font-size', h * 0.7 + 'px');
+
+            //try to work with svg... not working maybe p5 doesnt accept svg, so create DOM element instead?
+            image(listen, x + w, y, w, h);
         }
 
          //mailchimp
@@ -236,7 +242,7 @@ function draw() {
         if (toDoIndex[0] == i && toDoIndex[1] == ii) {
             fill(0);
             textSize(h * 0.45);
-            text('K = Play \nr = Refresh', x + w, y, -w, h);
+            text('Enter = Play \nr = Refresh', x + w, y, -w, h);
             mailchimp.style('width', -w + 'px');
         }
 
