@@ -45,6 +45,14 @@ function preload() {
 
   img = loadImage('assets/images/HCBlive.jpg');
   //listen = loadImage('assets/images/listen.svg');
+  header = createDiv('<img src="assets/images/header.svg" width="100%" height="100%">');
+  impressum = createDiv('<img src="assets/images/impressum.svg" width="100%" height="100%">');
+  youtube = createDiv('<img src="assets/images/Youtube.svg" width="100%" height="100%">');
+  bandcamp = createDiv('<img src="assets/images/listen.svg" alt="Girl in a jacket" width="100%" height="100%">');
+  mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
+  insta = createDiv('<img src="assets/images/insta.svg" width="100%" height="100%">');
+  playwithsound = createDiv('<img src="assets/images/playwsound.svg" width="100%" height="100%">');
+  regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
 }
 
 function windowResized() {
@@ -62,7 +70,7 @@ function setup() {
   //create html elements:
   //header
   //header = select('#header');
-  header = createDiv('<img src="assets/images/header.svg" width="100%" height="100%">');
+  //header = createDiv('<img src="assets/images/header.svg" width="100%" height="100%">');
   header.hide();
   header.mouseOver(headerMouseOver);
   header.mouseOut(headerMouseOut);
@@ -74,7 +82,7 @@ function setup() {
   
   //Youtube-Video
   //youtube = select('#youtube');
-  youtube = createDiv('<img src="assets/images/Youtube.svg" width="100%" height="100%">');
+  //youtube = createDiv('<img src="assets/images/Youtube.svg" width="100%" height="100%">');
   youtube.hide();
   youtube.mouseOver(youtubeMouseOver);
   youtube.mouseOut(youtubeMouseOut);
@@ -83,7 +91,7 @@ function setup() {
 
   //bandcamp
   //bandcamp = select('#bandcamp');
-  bandcamp = createDiv('<img src="assets/images/listen.svg" alt="Girl in a jacket" width="100%" height="100%">');
+  //bandcamp = createDiv('<img src="assets/images/listen.svg" alt="Girl in a jacket" width="100%" height="100%">');
   bandcamp.hide();
   bandcamp.mouseOver(bandcampMouseOver);
   bandcamp.mouseOut(bandcampMouseOut);
@@ -91,34 +99,34 @@ function setup() {
   
   //newsletter
   //mailchimp = select('#mailchimp')
-  mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
+  //mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
   mailchimp.hide();
   mailchimp.mouseOver(mailchimpMouseOver);
   mailchimp.mouseOut(mailchimpMouseOut);
   mailchimp.mouseClicked(mailchimpMouseClicked);
 
   //insta
-  insta = createDiv('<img src="assets/images/insta.svg" width="100%" height="100%">');
+  //insta = createDiv('<img src="assets/images/insta.svg" width="100%" height="100%">');
   insta.hide();
   insta.mouseOver(instaMouseOver);
   insta.mouseOut(instaMouseOut);
   insta.mouseClicked(instaMouseClicked);
 
-  impressum = createDiv('<img src="assets/images/impressum.svg" width="100%" height="100%">')
+  //impressum = createDiv('<img src="assets/images/impressum.svg" width="100%" height="100%">')
   impressum.mouseOver(impressumMouseOver);
   impressum.mouseOut(impressumMouseOut);
   impressum.mouseClicked(impressumMouseClicked);
 
   //play button
   //playwithsound = select('#playwithsound');
-  playwithsound = createDiv('<img src="assets/images/playwsound.svg" width="100%" height="100%">');
+  //playwithsound = createDiv('<img src="assets/images/playwsound.svg" width="100%" height="100%">');
   playwithsound.mouseOver(playwithsoundMouseOver);
   playwithsound.mouseOut(playwithsoundMouseOut);
   playwithsound.mouseClicked(playwithsoundClicked);
 
   //regenerate page
   //regenerate = select('#regenerate');
-  regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
+  //regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
   regenerate.mouseOver(regenerateMouseOver);
   regenerate.mouseOut(regenerateMouseOut);
   regenerate.mouseClicked(regenerateClicked);
