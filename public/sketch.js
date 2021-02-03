@@ -46,11 +46,11 @@ function preload() {
   img = loadImage('assets/images/HCBlive.jpg');
   //listen = loadImage('assets/images/listen.svg');
   header = createDiv('<img src="assets/images/header.svg" width="100%" height="100%">');
-  impressum = createDiv('<img src="assets/images/Impressum.svg" width="100%" height="100%">');
+  impressum = createDiv('<img src="assets/images/impressum.svg" width="100%" height="100%">');
   youtube = createDiv('<img src="assets/images/Youtube.svg" width="100%" height="100%">');
   bandcamp = createDiv('<img src="assets/images/listen.svg" alt="Girl in a jacket" width="100%" height="100%">');
   mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
-  insta = createDiv('<img src="assets/images/Insta.svg" width="100%" height="100%">');
+  insta = createDiv('<img src="assets/images/insta.svg" width="100%" height="100%">');
   playwithsound = createDiv('<img src="assets/images/playwsound.svg" width="100%" height="100%">');
   regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
 }
