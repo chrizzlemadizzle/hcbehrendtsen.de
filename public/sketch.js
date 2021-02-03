@@ -42,7 +42,6 @@ function preload() {
   bass = loadSound('assets/sounds/bass.ogg');
   snare = loadSound('assets/sounds/snare.ogg');
   giddi = loadSound('assets/sounds/giddi.ogg');
-
   img = loadImage('assets/images/HCBlive.jpg');
   //listen = loadImage('assets/images/listen.svg');
   header = createDiv('<img src="assets/images/header.svg" width="100%" height="100%">');
@@ -57,6 +56,10 @@ function preload() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function touchStarted() {
+  getAudioContext().resume();
 }
 
 function setup() {
@@ -75,11 +78,11 @@ function setup() {
   header.mouseOver(headerMouseOver);
   header.mouseOut(headerMouseOut);
   header.mouseClicked(headerMouseClicked);
-  
+
   //image1
   //img = createP('<img src="assets/images/Trio_yellow.gif" width="640" height="480" alt="picture of us">');
   img.resize(width, 0);
-  
+
   //Youtube-Video
   //youtube = select('#youtube');
   //youtube = createDiv('<img src="assets/images/Youtube.svg" width="100%" height="100%">');
@@ -96,7 +99,7 @@ function setup() {
   bandcamp.mouseOver(bandcampMouseOver);
   bandcamp.mouseOut(bandcampMouseOut);
   bandcamp.mouseClicked(bandcampMouseClicked);
-  
+
   //newsletter
   //mailchimp = select('#mailchimp')
   //mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
@@ -224,7 +227,7 @@ function draw() {
     bandcampIndex[0] = 3;
     // bandcampIndex[0] = floor(random(0, rowCount));
     bandcampIndex[1] = floor(random(0, bandcampIndex[0] + 1));
-   
+
     mailchimpIndex[0] = 5;
     //mailchimpIndex[0] = floor(random(0, rowCount));
     mailchimpIndex[1] = floor(random(0, mailchimpIndex[0] + 1));
@@ -234,7 +237,7 @@ function draw() {
 
     impressumIndex[0] = 7;
     impressumIndex[1] = 0;
-  
+
     // toDoIndex[0] = floor(random(0, rowCount));
     // toDoIndex[1] = floor(random(0, toDoIndex[0] + 1));
 
@@ -244,7 +247,7 @@ function draw() {
     regenerateIndex[0] = floor(random(1, 6));
     regenerateIndex[1] = floor(random(0, regenerateIndex[0] + 1));
 
-  
+
 
   // seperate each line in parts
   for (var i = rowCount; i >= 0; i--) {
@@ -294,7 +297,7 @@ function draw() {
             //header.style('font-size', h + 'px');
             //header.style('width', -w + 'px');
             header.style('heigth', h + 'px');
-            
+
         }
 
         //positioning of html elements:
@@ -330,7 +333,7 @@ function draw() {
             //textSize(h * 0.45);
             //text('Listen', x + w, y, -w * 3, h);
             //bandcamp = new text('Listen', x + w, y, -w * 3, h);
-            
+
             // bandcamp.position(x + w, y);
             // bandcamp.style('width', -w + 'px');
             // bandcamp.style('heigth', h + 'px');
@@ -363,7 +366,7 @@ function draw() {
         //     text('Enter = Play \nr = Refresh', x + w, y, -w, h);
         //     mailchimp.style('width', -w + 'px');
         //}
-        
+
         //playwithsound
         if (playwithsoundIndex[0] == i && playwithsoundIndex[1] == ii) {
             playwithsound.position(x + w, y);
@@ -376,7 +379,7 @@ function draw() {
           regenerate.position(x + w, y);
           regenerate.style('width', -w + 'px');
           regenerate.style('heigth', h + 'px');
-        } 
+        }
 
       //create scores from w values:
       //for (var j = rowCount; j >= 0; j--) {
@@ -425,7 +428,7 @@ function draw() {
         }
       //}
 
-        
+
       counter++;
     }
   }
@@ -509,7 +512,7 @@ function regenerateFunc() {
 
 function playwithsoundFunc () {
       userStartAudio();
-      
+
       ///
       if (soundLoop2.isPlaying || soundLoop3.isPlaying || soundLoop4.isPlaying || soundLoop5.isPlaying || soundLoop6.isPlaying || soundLoop7.isPlaying ) {
           soundLoop2.stop();
@@ -535,7 +538,7 @@ function playwithsoundFunc () {
           playwithsound.position(score8[playwithsoundIndex[1]][1] + score8[playwithsoundIndex[1]][3], score8[playwithsoundIndex[1]][2]);
           playwithsound.style('width', -score8[playwithsoundIndex[1]][3] + 'px');
           playwithsound.style('heigth', score8[playwithsoundIndex[1]][4] + 'px');
-      
+
           regenerateIndex[0] = 7;
           regenerateIndex[1] = floor(random(0, regenerateIndex[0] + 1));
           regenerate.position(score8[regenerateIndex[1]][1] + score8[regenerateIndex[1]][3], score8[regenerateIndex[1]][2]);
@@ -543,12 +546,12 @@ function playwithsoundFunc () {
           regenerate.style('heigth', score8[regenerateIndex[1]][4] + 'px');
       }
 
-      
+
 }
 ///
 
 function onSoundLoop2 (timeFromNow) {
-  
+
   var index = (soundLoop2.iterations - 1) % score2.length;
   var interval = score2[index][0];
   var x = score2[index][1];
@@ -566,7 +569,7 @@ function onSoundLoop2 (timeFromNow) {
   fill(col);
   rect(x, y, w, h);
 
-  
+
 
   if (imgIndex[0] == 2 && imgIndex[1] == index) {
     image(img, x + w, y, -w, h, x + w, y, -w, h );
@@ -656,7 +659,7 @@ function onSoundLoop4(timeFromNow) {
     youtube.style('heigth', score4[index][4] + 'px');
     youtube.show();
     youtube.style('background-color', '#55FF00');
-    
+
   }
 
   if (imgIndex[0] == 4 && imgIndex[1] == index) {
