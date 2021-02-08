@@ -26,7 +26,7 @@ var mailchimp, mailchimpIndex;
 var insta, instaIndex;
 var impressum, impressumIndex;
 // var toDo, toDoIndex;
-var regenerate, playwithsound, playwithoutsound;
+var regenerate, playwithsound, playwithsoundIndex, playwithoutsound, playwithoutsoundIndex;
 
 var colorCount = 3;
 var hueValues = [];
@@ -51,6 +51,7 @@ function preload() {
   mailchimp = createDiv('<img src="assets/images/mailchimp.svg" width="100%" height="100%">');
   insta = createDiv('<img src="assets/images/insta.svg" width="100%" height="100%">');
   playwithsound = createDiv('<img src="assets/images/playwsound.svg" width="100%" height="100%">');
+  playwithoutsound = createDiv('<img src="assets/images/playwosound.svg" width="100%" height="100%">');
   regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
 }
 
@@ -127,6 +128,10 @@ function setup() {
   playwithsound.mouseOut(playwithsoundMouseOut);
   playwithsound.mouseClicked(playwithsoundClicked);
 
+  playwithoutsound.mouseOver(playwithoutsoundMouseOver);
+  playwithoutsound.mouseOut(playwithoutsoundMouseOut);
+  playwithoutsound.mouseClicked(playwithoutsoundClicked);
+
   //regenerate page
   //regenerate = select('#regenerate');
   //regenerate = createDiv('<img src="assets/images/regenerate.svg" width="100%" height="100%">');
@@ -193,6 +198,7 @@ function draw() {
   impressumIndex = new Array('', '');
   // toDoIndex = new Array('', '');
   playwithsoundIndex = new Array('', '');
+  playwithoutsoundIndex = new Array('', '');
   regenerateIndex = new Array('', '');
   let compareIndexes = [headerIndex, imgIndex, youtubeIndex, bandcampIndex, mailchimpIndex];
   let alreadySeen = [];
@@ -243,6 +249,9 @@ function draw() {
 
     playwithsoundIndex[0] = floor(random(1, 6));
     playwithsoundIndex[1] = floor(random(0, playwithsoundIndex[0] + 1));
+
+    playwithoutsoundIndex[0] = floor(random(1, 6));
+    playwithoutsoundIndex[1] = floor(random(0, playwithoutsoundIndex[0] + 1));
 
     regenerateIndex[0] = floor(random(1, 6));
     regenerateIndex[1] = floor(random(0, regenerateIndex[0] + 1));
@@ -373,6 +382,12 @@ function draw() {
             playwithsound.style('width', -w + 'px');
             playwithsound.style('heigth', h + 'px');
          }
+
+         if (playwithoutsoundIndex[0] == i && playwithoutsoundIndex[1] == ii) {
+          playwithoutsound.position(x + w, y);
+          playwithoutsound.style('width', -w + 'px');
+          playwithoutsound.style('heigth', h + 'px');
+       }
 
         //regenerate
         if (regenerateIndex[0] == i && regenerateIndex[1] == ii) {
@@ -512,6 +527,7 @@ function regenerateFunc() {
 
 function playwithsoundFunc () {
       userStartAudio();
+      masterVolume(1);
 
       ///
       if (soundLoop2.isPlaying || soundLoop3.isPlaying || soundLoop4.isPlaying || soundLoop5.isPlaying || soundLoop6.isPlaying || soundLoop7.isPlaying ) {
@@ -532,6 +548,7 @@ function playwithsoundFunc () {
 
           regenerate.hide();
           playwithsound.hide();
+          playwithoutsound.hide();
 
           playwithsoundIndex[0] = 7;
           playwithsoundIndex[1] = floor(random(0, playwithsoundIndex[0] + 1));
@@ -539,13 +556,63 @@ function playwithsoundFunc () {
           playwithsound.style('width', -score8[playwithsoundIndex[1]][3] + 'px');
           playwithsound.style('heigth', score8[playwithsoundIndex[1]][4] + 'px');
 
+          playwithoutsoundIndex[0] = 7;
+          playwithoutsoundIndex[1] = floor(random(0, playwithoutsoundIndex[0] + 1));
+          playwithoutsound.position(score8[playwithoutsoundIndex[1]][1] + score8[playwithoutsoundIndex[1]][3], score8[playwithoutsoundIndex[1]][2]);
+          playwithoutsound.style('width', -score8[playwithoutsoundIndex[1]][3] + 'px');
+          playwithoutsound.style('heigth', score8[playwithoutsoundIndex[1]][4] + 'px');
+
           regenerateIndex[0] = 7;
           regenerateIndex[1] = floor(random(0, regenerateIndex[0] + 1));
           regenerate.position(score8[regenerateIndex[1]][1] + score8[regenerateIndex[1]][3], score8[regenerateIndex[1]][2]);
           regenerate.style('width', -score8[regenerateIndex[1]][3] + 'px');
           regenerate.style('heigth', score8[regenerateIndex[1]][4] + 'px');
-      }
+        }
+}
 
+function playwithoutsoundFunc () {
+      userStartAudio();
+      masterVolume(0);
+  
+        ///
+        if (soundLoop2.isPlaying || soundLoop3.isPlaying || soundLoop4.isPlaying || soundLoop5.isPlaying || soundLoop6.isPlaying || soundLoop7.isPlaying ) {
+            soundLoop2.stop();
+            soundLoop3.stop();
+            soundLoop4.stop();
+            soundLoop5.stop();
+            soundLoop6.stop();
+            soundLoop7.stop();
+        } else {
+            //start the loop
+            soundLoop2.start();
+            soundLoop3.start();
+            soundLoop4.start();
+            soundLoop5.start();
+            soundLoop6.start();
+            soundLoop7.start();
+  
+            regenerate.hide();
+            playwithsound.hide();
+            playwithoutsound.hide();
+  
+            playwithsoundIndex[0] = 7;
+            playwithsoundIndex[1] = floor(random(0, playwithsoundIndex[0] + 1));
+            playwithsound.position(score8[playwithsoundIndex[1]][1] + score8[playwithsoundIndex[1]][3], score8[playwithsoundIndex[1]][2]);
+            playwithsound.style('width', -score8[playwithsoundIndex[1]][3] + 'px');
+            playwithsound.style('heigth', score8[playwithsoundIndex[1]][4] + 'px');
+  
+            playwithoutsoundIndex[0] = 7;
+            playwithoutsoundIndex[1] = floor(random(0, playwithoutsoundIndex[0] + 1));
+            playwithoutsound.position(score8[playwithoutsoundIndex[1]][1] + score8[playwithoutsoundIndex[1]][3], score8[playwithoutsoundIndex[1]][2]);
+            playwithoutsound.style('width', -score8[playwithoutsoundIndex[1]][3] + 'px');
+            playwithoutsound.style('heigth', score8[playwithoutsoundIndex[1]][4] + 'px');
+  
+            regenerateIndex[0] = 7;
+            regenerateIndex[1] = floor(random(0, regenerateIndex[0] + 1));
+            regenerate.position(score8[regenerateIndex[1]][1] + score8[regenerateIndex[1]][3], score8[regenerateIndex[1]][2]);
+            regenerate.style('width', -score8[regenerateIndex[1]][3] + 'px');
+            regenerate.style('heigth', score8[regenerateIndex[1]][4] + 'px');
+        }
 
 }
 ///
@@ -793,6 +860,7 @@ function onSoundLoop7 (timeFromNow) {
     header.show();
     playwithsound.show();
     regenerate.show();
+    playwithoutsound.show();
   }
 
   if (imgIndex[0] == 7 && imgIndex[1] == index) {
@@ -902,7 +970,20 @@ function playwithsoundMouseOut() {
 
 function playwithsoundClicked() {
   playwithsoundFunc();
-  }
+}
+
+  //play without sound user interaction
+function playwithoutsoundMouseOver() {
+  playwithoutsound.style('background-color', 'coral');
+}
+
+function playwithoutsoundMouseOut() {
+  playwithoutsound.style('background-color', '#55FF00')
+}
+
+function playwithoutsoundClicked() {
+  playwithoutsoundFunc();
+}
 
   //regenerate user interaction
 function regenerateMouseOver() {
@@ -915,4 +996,4 @@ function regenerateMouseOut() {
 
 function regenerateClicked() {
   regenerateFunc();
-  }
+}
